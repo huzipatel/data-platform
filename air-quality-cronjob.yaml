@@ -1,0 +1,17 @@
+# air-quality-cronjob.yaml
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: air-quality-fetcher
+  namespace: monitoring
+spec:
+  schedule: "*/5 * * * *"  # Every 5 minutes
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: air-quality-fetcher
+            image: <YOUR-PYTHON-IMAGE>  # Build and push your Python script as a Docker image
+            command: ["python", "your_script.py"]
+          restartPolicy: OnFailure

@@ -1,0 +1,14 @@
+# influxdb-loadbalancer.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: influxdb-lb
+  namespace: monitoring
+spec:
+  type: LoadBalancer
+  selector:
+    app: influxdb
+  ports:
+    - protocol: TCP
+      port: 8086
+      targetPort: 8086
