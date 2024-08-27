@@ -2,7 +2,7 @@ import requests
 from influxdb_client import InfluxDBClient, Point, WriteOptions
 
 # Configuration
-INFLUXDB_URL = "<INFLUXDB-EXTERNAL-URL> "
+INFLUXDB_URL = "http://influxdb-service.monitoring.svc.cluster.local:8086"
 INFLUXDB_TOKEN = "sL0JLLOmld1bN1kBWpWx3RZ3Scd6ZeOOYVbWkeKRPkGqKI7-0sehEzH05Xlm9r6zeqvYyCH0DmalpYlgOCfJxA=="
 INFLUXDB_ORG = "HuziPersonal"
 INFLUXDB_BUCKET = "WeatherAPI"
