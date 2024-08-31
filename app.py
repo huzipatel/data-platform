@@ -1,13 +1,16 @@
+from dotenv import load_dotenv
+import os 
 import requests
 from influxdb_client import InfluxDBClient, Point, WriteOptions
 
 # Configuration
-INFLUXDB_URL = "http://influxdb-service.monitoring.svc.cluster.local:8086"
-INFLUXDB_TOKEN = "sL0JLLOmld1bN1kBWpWx3RZ3Scd6ZeOOYVbWkeKRPkGqKI7-0sehEzH05Xlm9r6zeqvYyCH0DmalpYlgOCfJxA=="
-INFLUXDB_ORG = "HuziPersonal"
-INFLUXDB_BUCKET = "WeatherAPI"
-API_URL = "https://api.marketstack.com/v1/eod?symbols=AAPL"
-API_KEY = "18d39a0626eaf7cdd4a23b2e9c962150"
+load_dotenv()
+INFLUXDB_URL = os.getenv('INFLUXDB_URL')
+INFLUXDB_TOKEN = os.getenv('INFLUXDB_TOKEN')
+INFLUXDB_ORG = os.getenv('INFLUXDB_ORG')
+INFLUXDB_BUCKET = os.getenv('INFLUXDB_BUCKET')
+API_URL = os.getenv('API_URL')
+API_KEY = os.getenv('API_KEY')
 
 client = InfluxDBClient(url=INFLUXDB_URL, token=INFLUXDB_TOKEN, org=INFLUXDB_ORG)
 write_api = client.write_api(write_options=WriteOptions(batch_size=1))
