@@ -22,8 +22,6 @@ def fetch_end_of_day_data():
     print(data)
 
 
-
-
 def process_and_store_data(data):
     # Example: Suppose data contains "pm2.5" and "pm10" values
     pm25 = data['pm25']
