@@ -12,14 +12,23 @@ INFLUXDB_BUCKET = os.getenv('INFLUXDB_BUCKET')
 API_URL = os.getenv('API_URL')
 API_KEY = os.getenv('API_KEY')
 
+#Define parameters as a dictionary
+params = {
+    'access_key': API_KEY,
+    'symbols': 'AAPL'
+}
+
 client = InfluxDBClient(url=INFLUXDB_URL, token=INFLUXDB_TOKEN, org=INFLUXDB_ORG)
 write_api = client.write_api(write_options=WriteOptions(batch_size=1))
 
+
 def fetch_end_of_day_data():
-    response = requests.get(API_URL, API_KEY)
+    response = requests.get(API_URL, params = params)
+    print(response)
     data = response.json()
-    return data
     print(data)
+    return data
+    
 
 
 def process_and_store_data(data):
@@ -35,5 +44,6 @@ def process_and_store_data(data):
     write_api.write(INFLUXDB_BUCKET, INFLUXDB_ORG, point)
 
 if __name__ == "__main__":
-    data = fetch_air_quality_data()
-    process_and_store_data(data)
+    data = fetch_end_of_day_data()
+    print(data)
+    #process_and_store_data(data)
