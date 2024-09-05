@@ -13,21 +13,42 @@ API_URL = os.getenv('API_URL')
 API_KEY = os.getenv('API_KEY')
 
 #Define parameters as a dictionary
-params = {
-    'access_key': API_KEY,
-    'symbols': 'AAPL'
-}
+
 
 client = InfluxDBClient(url=INFLUXDB_URL, token=INFLUXDB_TOKEN, org=INFLUXDB_ORG)
 write_api = client.write_api(write_options=WriteOptions(batch_size=1))
 
 
 def fetch_end_of_day_data():
-    response = requests.get(API_URL, params = params)
-    print(response)
-    data = response.json()
-    print(data)
-    return data
+    # Create a loop to fetch all pages
+    while True:
+        # Define the parameters, including the offset and limit
+        params = {
+    'access_key': API_KEY,
+    'symbols': 'AAPL'
+    'offset': offset,
+    'limit':limit
+}
+        #Make the GET request
+        response = requests.get(API_URL, params = params)
+        data = response.json
+        #Check if the response contains data
+        if 'data' in data and data['data']:
+            # Process the data on this page
+            for item in data['data']:
+
+                #Processing code here
+                print(item)
+
+        #Check if there are more pages
+        if data.get()
+        print(response)
+        
+        data = response.json()
+        
+        print(data)
+        
+        return data
     
 
 
