@@ -22,11 +22,13 @@ write_api = client.write_api(write_options=WriteOptions(batch_size=1))
 def fetch_end_of_day_data():
     # Create a loop to fetch all pages
     while True:
+        offset = 0
+        limit = 100
         # Define the parameters, including the offset and limit
         params = {
     'access_key': API_KEY,
-    'symbols': 'AAPL'
-    'offset': offset,
+    'symbols': 'AAPL',
+    'offset':offset,
     'limit':limit
 }
         #Make the GET request
@@ -39,9 +41,9 @@ def fetch_end_of_day_data():
 
                 #Processing code here
                 print(item)
-
-        #Check if there are more pages
-        if data.get()
+         
+        #C
+        #if data.get()
         print(response)
         
         data = response.json()
